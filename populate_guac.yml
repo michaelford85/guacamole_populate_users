@@ -2,9 +2,6 @@
 - name: Populate Apache Guacamole with Users and Connections
   hosts: guacamole
   gather_facts: False
-  vars_files:
-    - ./vars/default_vars.yml
-    - ./vars/guacamole_credentials.yml
 
   tasks:
 
