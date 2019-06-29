@@ -1,0 +1,28 @@
+---
+- name: Populate Apache Guacamole with Users and Connections
+  hosts: guacamole
+  gather_facts: False
+  vars_files:
+    - ./vars/default_vars.yml
+    - ./vars/guacamole_credentials.yml
+
+  tasks:
+
+    - name: Set guacamole_server fact
+      set_fact:
+        guacamole_server: "{{ ansible_host }}"
+
+    - name: Invoke populate_guacamole role
+      include_role:
+        name: populate_guacamole
+      with_sequence: start=1 count="{{ student_total }}"
+
+    - name: Clean Up JSON Files
+      file:
+        path: "{{ playbook_dir }}/{{ item }}"
+        state: absent
+      with_items:
+        - rdp_connection.json
+        - ssh_connection.json
+        - users.json
+      delegate_to: localhost

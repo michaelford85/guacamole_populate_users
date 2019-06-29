@@ -1,0 +1,7 @@
+---
+GUAC_USERNAME: guacadmin
+GUAC_PASSWORD: password
+student_total: 30
+ec2_name_prefix: test-workshop
+domain: ansible.com
+password: ansible
